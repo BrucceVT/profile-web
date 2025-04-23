@@ -90,6 +90,6 @@ This project is licensed under the MIT License.
 
 ## Contact
 
-- Email: john.doe@example.com
-- GitHub: [github.com/johndoe](https://github.com/johndoe)
-- LinkedIn: [linkedin.com/in/johndoe](https://linkedin.com/in/johndoe)
+- Email: bvillena2000@gmail.com
+- GitHub: [github.com/BrucceVT](https://github.com/BrucceVT)
+- LinkedIn: [linkedin.com/in/brucce-villena-terreros](https://pe.linkedin.com/in/brucce-villena-terreros-0432aa183)

@@ -10,22 +10,28 @@ const Contact: React.FC = () => {
           <p>
             Email:{" "}
             <a
-              href="mailto:john.doe@example.com"
+              href="mailto:bvillena2000@gmail.com"
               className="text-blue-600 hover:underline"
             >
-              john.doe@example.com
-            </a>
-          </p>
-          <p>
-            LinkedIn:{" "}
-            <a href="#" className="text-blue-600 hover:underline">
-              linkedin.com/in/johndoe
+              bvillena2000@gmail.com
             </a>
           </p>
           <p>
             GitHub:{" "}
-            <a href="#" className="text-blue-600 hover:underline">
-              github.com/johndoe
+            <a
+              href="https://github.com/BrucceVT"
+              className="text-blue-600 hover:underline"
+            >
+              github.com/BrucceVT
+            </a>
+          </p>
+          <p>
+            LinkedIn:{" "}
+            <a
+              href="https://pe.linkedin.com/in/brucce-villena-terreros-0432aa183"
+              className="text-blue-600 hover:underline"
+            >
+              linkedin.com/in/brucce-villena-terreros
             </a>
           </p>
         </div>

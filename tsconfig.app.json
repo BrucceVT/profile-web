@@ -23,11 +23,9 @@
     "noUncheckedSideEffectImports": true,
 
     /* Experimental */
-    "baseUrl": "src",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["*"],
-      "@pages/*": ["pages/*"],
-      "@components/*": ["components/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src"]

@@ -3,7 +3,7 @@ const Contact: React.FC = () => {
     <section className="py-12">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold mb-4">Contacto</h2>
-        <p className="text-gray-700 mb-4">
+        <p className="text-gray-400 mb-4">
           ¡Contáctame para colaboraciones o consultas!
         </p>
         <div className="space-y-4 max-w-md">

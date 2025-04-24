@@ -10,7 +10,7 @@ const Home: React.FC = () => {
             <CardTitle>Bienvenido a mi Portafolio</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-700 mb-4">
+            <p className="text-gray-400 mb-4">
               Hola, soy Brucce Yul Villena Terreros, un desarrollador apasionado
               por crear aplicaciones web modernas y responsivas. Explora mis
               proyectos y contáctame para colaboraciones.

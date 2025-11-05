@@ -27,6 +27,24 @@
     <meta name="theme-color" content="#0ea5e9" />
 
     <title>Portafolio - Brucce Villena</title>
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("theme"); // 'light' | 'dark' | 'system' | null
+          var preferDark = window.matchMedia(
+            "(prefers-color-scheme: dark)"
+          ).matches;
+          var useDark = saved === "dark" || (saved !== "light" && preferDark);
+          if (useDark) {
+            document.documentElement.classList.add("dark");
+            document.documentElement.setAttribute("data-theme", "dark");
+          } else {
+            document.documentElement.classList.remove("dark");
+            document.documentElement.setAttribute("data-theme", "light");
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

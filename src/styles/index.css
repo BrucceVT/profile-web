@@ -55,6 +55,17 @@
   --font-retro: "IBM_Plex_Mono", monospace;
 }
 
+/* Transición suave de tema */
+html {
+  color-scheme: light dark;
+}
+*,
+*::before,
+*::after {
+  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+
+
 :root {
   --radius: 0.625rem;
   --background: oklch(0.15 0.02 260);

@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
+import ThemeToggle from "@/components/theme/ThemeToggle";
 
 const Header: React.FC = () => {
   const navItems = [
@@ -25,31 +26,37 @@ const Header: React.FC = () => {
         >
           Brucce Yul Villena Terreros
         </motion.h1>
-        <nav>
-          <ul className="flex space-x-6">
-            {navItems.map((item, index) => (
-              <motion.li
-                key={item.to}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3 + index * 0.1, duration: 0.3 }}
-              >
-                <NavLink
-                  to={item.to}
-                  className={({ isActive }) =>
-                    `text-secondary font-pixel text-sm pixel-border py-1 px-2 ${
-                      isActive
-                        ? "text-accent bg-primary/20"
-                        : "hover:text-accent hover:bg-primary/10"
-                    }`
-                  }
+
+        <div className="flex items-center gap-4">
+          <nav>
+            <ul className="flex space-x-6">
+              {navItems.map((item, index) => (
+                <motion.li
+                  key={item.to}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.3 + index * 0.1, duration: 0.3 }}
                 >
-                  {item.label}
-                </NavLink>
-              </motion.li>
-            ))}
-          </ul>
-        </nav>
+                  <NavLink
+                    to={item.to}
+                    className={({ isActive }) =>
+                      `text-secondary font-pixel text-sm pixel-border py-1 px-2 ${
+                        isActive
+                          ? "text-accent bg-primary/20"
+                          : "hover:text-accent hover:bg-primary/10"
+                      }`
+                    }
+                  >
+                    {item.label}
+                  </NavLink>
+                </motion.li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* Botón de tema */}
+          <ThemeToggle />
+        </div>
       </div>
     </motion.header>
   );

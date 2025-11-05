@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -16,7 +17,7 @@ const Home: React.FC = () => {
               proyectos y contáctame para colaboraciones.
             </p>
             <Button asChild>
-              <a href="/projects">Ver Proyectos</a>
+              <Link to="/projects">Ver Proyectos</Link>
             </Button>
           </CardContent>
         </Card>

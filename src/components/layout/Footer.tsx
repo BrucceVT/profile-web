@@ -23,6 +23,7 @@ const Footer: React.FC = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.3 }}
         >
+          {/* mailto: no es página externa; puede quedar sin target */}
           <a
             href="mailto:bvillena2000@gmail.com"
             className="text-secondary hover:text-accent font-pixel text-sm"
@@ -31,12 +32,16 @@ const Footer: React.FC = () => {
           </a>
           <a
             href="https://github.com/BrucceVT"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-secondary hover:text-accent font-pixel text-sm"
           >
             GitHub
           </a>
           <a
-            href="https://pe.linkedin.com/in/brucce-villena-terreros-0432aa183"
+            href="https://www.linkedin.com/in/bruccevt/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-secondary hover:text-accent font-pixel text-sm"
           >
             LinkedIn

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const ErrorBoundary: React.FC = () => {
   return (
     <section className="py-12 bg-gray-100">
@@ -6,9 +8,9 @@ const ErrorBoundary: React.FC = () => {
         <p className="text-gray-700 mb-4">
           Lo sentimos, ocurrió un error al cargar esta página.
         </p>
-        <a href="/" className="text-blue-600 hover:underline">
+        <Link to="/" className="text-blue-600 hover:underline">
           Volver al Inicio
-        </a>
+        </Link>
       </div>
     </section>
   );

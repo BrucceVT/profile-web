@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -8,23 +9,25 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-const Projects: React.FC = () => {
-  const projects = [
-    {
-      id: 1,
-      title: "Proyecto 1",
-      description:
-        "Una aplicación web moderna construida con React y Tailwind CSS.",
-      link: "#",
-    },
-    {
-      id: 2,
-      title: "Proyecto 2",
-      description: "Un sistema de gestión desarrollado con TypeScript y Vite.",
-      link: "#",
-    },
-  ];
+const projects = [
+  {
+    id: 1,
+    title: "Proyecto 1",
+    description:
+      "Una aplicación web moderna construida con React y Tailwind CSS.",
+    link: "https://example.com/proyecto-1", // externo
+  },
+  {
+    id: 2,
+    title: "Proyecto 2",
+    description: "Un sistema de gestión desarrollado con TypeScript y Vite.",
+    link: "/projects/2", // interno (ejemplo)
+  },
+];
 
+const isExternal = (url: string) => /^https?:\/\//i.test(url);
+
+const Projects: React.FC = () => {
   return (
     <section className="py-12">
       <div className="container mx-auto px-4">
@@ -40,9 +43,21 @@ const Projects: React.FC = () => {
                 <p>Más detalles sobre el proyecto aquí.</p>
               </CardContent>
               <CardFooter>
-                <Button asChild variant="outline">
-                  <a href={project.link}>Ver Proyecto</a>
-                </Button>
+                {isExternal(project.link) ? (
+                  <Button asChild variant="outline">
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Ver Proyecto
+                    </a>
+                  </Button>
+                ) : (
+                  <Button asChild variant="outline">
+                    <Link to={project.link}>Ver Proyecto</Link>
+                  </Button>
+                )}
               </CardFooter>
             </Card>
           ))}

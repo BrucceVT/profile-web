@@ -20,6 +20,8 @@ const Contact: React.FC = () => {
             GitHub:{" "}
             <a
               href="https://github.com/BrucceVT"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-blue-600 hover:underline"
             >
               github.com/BrucceVT
@@ -28,10 +30,12 @@ const Contact: React.FC = () => {
           <p>
             LinkedIn:{" "}
             <a
-              href="https://pe.linkedin.com/in/brucce-villena-terreros-0432aa183"
+              href="https://www.linkedin.com/in/bruccevt/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-blue-600 hover:underline"
             >
-              linkedin.com/in/brucce-villena-terreros
+              linkedin.com/in/bruccevt
             </a>
           </p>
         </div>

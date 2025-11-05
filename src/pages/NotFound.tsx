@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const NotFound: React.FC = () => {
   return (
     <section className="py-12">
@@ -6,9 +8,12 @@ const NotFound: React.FC = () => {
         <p className="text-gray-700">
           Lo sentimos, la página que buscas no existe.
         </p>
-        <a href="/" className="text-blue-600 hover:underline mt-4 inline-block">
+        <Link
+          to="/"
+          className="text-blue-600 hover:underline mt-4 inline-block"
+        >
           Volver al Inicio
-        </a>
+        </Link>
       </div>
     </section>
   );

@@ -1,8 +1,14 @@
-import router from "@/routes";
-import { RouterProvider } from "react-router-dom";
+// App.tsx - Main application entry point
 
-const App: React.FC = () => {
-  return <RouterProvider router={router} />;
-};
+import { WindowManagerProvider } from "@/context/WindowManager";
+import { Desktop } from "@/components/os";
+
+function App() {
+  return (
+    <WindowManagerProvider>
+      <Desktop />
+    </WindowManagerProvider>
+  );
+}
 
 export default App;

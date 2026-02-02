@@ -1,19 +1,36 @@
 // Skills Window - Technical skills display
 
 import React from "react";
-import { skillCategories } from "@/data";
+import { useI18n } from "@/i18n";
+
+// Skills data
+const skillsData = {
+  frontend: ["React", "Next.js", "Vue", "Tailwind CSS", "Material UI"],
+  mobile: ["Flutter", "React Native"],
+  backend: ["Node.js (Express)", "Django", "Laravel", ".NET Core"],
+  dbCloud: ["MongoDB", "SQL Server", "AWS (S3, Lambda)", "Oracle APEX"],
+};
 
 export const SkillsWindow: React.FC = () => {
+  const { t } = useI18n();
+
+  const categories = [
+    { key: "frontend", label: t.skillsWindow.frontend, skills: skillsData.frontend },
+    { key: "mobile", label: t.skillsWindow.mobile, skills: skillsData.mobile },
+    { key: "backend", label: t.skillsWindow.backend, skills: skillsData.backend },
+    { key: "dbCloud", label: t.skillsWindow.dbCloud, skills: skillsData.dbCloud },
+  ];
+
   return (
     <div className="p-4 font-retro">
       <div className="grid grid-cols-2 gap-4">
-        {skillCategories.map((category) => (
+        {categories.map((category) => (
           <fieldset
-            key={category.name}
+            key={category.key}
             className="border-2 border-black p-2 bg-white relative mt-2 shadow-[2px_2px_0px_rgba(0,0,0,0.2)]"
           >
-            <legend className="bg-mac-gray px-2 text-sm font-bold border border-black shadow-[1px_1px_0px_white] ml-2">
-              {category.name}
+            <legend className="bg-mac-gray px-2 text-base font-bold border border-black shadow-[1px_1px_0px_white] ml-2">
+              {category.label}
             </legend>
             <ul className="list-none p-1">
               {category.skills.map((skill) => (

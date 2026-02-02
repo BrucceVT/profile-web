@@ -11,23 +11,39 @@
 
 :root {
   font-family: "VT323", monospace;
-  background-color: #555; /* Dark background pattern fallback */
+  /* Increased base font size for better legibility */
+  font-size: 18px;
+  line-height: 1.4;
+  background-color: #555;
   background-image: radial-gradient(#777 1px, transparent 1px);
   background-size: 4px 4px;
 }
 
 body {
   margin: 0;
-  overflow: hidden; /* Prevent scrolling on the desktop */
+  overflow: hidden;
   height: 100vh;
   width: 100vw;
   user-select: none;
   cursor: default;
 }
 
+/* Responsive font size adjustments */
+@media (max-width: 768px) {
+  :root {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    font-size: 20px;
+  }
+}
+
 /* Custom Scrollbar for retro feel */
 ::-webkit-scrollbar {
-  width: 16px;
+  width: 18px;
   background: white;
   border-left: 1px solid black;
 }
@@ -49,4 +65,10 @@ body {
 
 .retro-border-inset {
   box-shadow: inset 1px 1px 0px black, inset -1px -1px 0px white;
+}
+
+/* Improved text sizes for legibility */
+.font-retro {
+  font-family: "VT323", monospace;
+  letter-spacing: 0.02em;
 }

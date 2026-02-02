@@ -76,7 +76,7 @@ export const Window: React.FC<WindowProps> = ({
         className="flex items-center justify-between px-1 py-0.5 border-b border-black select-none cursor-grab active:cursor-grabbing"
         style={{
           background: isActive ? stripedBackground : "#c0c0c0",
-          height: "22px",
+          height: "28px",
         }}
       >
         {/* Close Button */}
@@ -85,7 +85,7 @@ export const Window: React.FC<WindowProps> = ({
             e.stopPropagation();
             closeWindow(id);
           }}
-          className="w-4 h-4 bg-white border border-black flex items-center justify-center text-[10px] font-bold hover:bg-red-100 active:bg-black active:text-white"
+          className="w-5 h-5 bg-white border border-black flex items-center justify-center text-sm font-bold hover:bg-red-100 active:bg-black active:text-white"
           style={{ boxShadow: "inset 1px 1px 0px #fff, inset -1px -1px 0px #888" }}
           title="Close"
         >
@@ -94,7 +94,7 @@ export const Window: React.FC<WindowProps> = ({
 
         {/* Title */}
         <span
-          className="flex-1 text-center font-retro text-sm uppercase tracking-wider px-2 truncate"
+          className="flex-1 text-center font-retro text-base uppercase tracking-wider px-2 truncate"
           style={{
             color: isActive ? "black" : "#666",
             fontWeight: isActive ? "bold" : "normal",
@@ -109,7 +109,7 @@ export const Window: React.FC<WindowProps> = ({
             e.stopPropagation();
             minimizeWindow(id);
           }}
-          className="w-4 h-4 bg-white border border-black flex items-center justify-center text-[10px] font-bold hover:bg-yellow-100 active:bg-black active:text-white"
+          className="w-5 h-5 bg-white border border-black flex items-center justify-center text-sm font-bold hover:bg-yellow-100 active:bg-black active:text-white"
           style={{ boxShadow: "inset 1px 1px 0px #fff, inset -1px -1px 0px #888" }}
           title="Minimize"
         >
@@ -118,7 +118,7 @@ export const Window: React.FC<WindowProps> = ({
       </div>
 
       {/* Content Area */}
-      <div className="p-1 flex-1 overflow-auto bg-white m-1 border border-black retro-border-inset max-h-[60vh]">
+      <div className="p-2 flex-1 overflow-auto bg-white m-1.5 border border-black retro-border-inset max-h-[70vh]">
         {children}
       </div>
     </motion.div>

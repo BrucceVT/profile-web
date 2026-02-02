@@ -14,7 +14,7 @@ export const Dock: React.FC = () => {
   }
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 h-10 bg-mac-gray border-t-2 border-black flex items-center justify-center gap-1 px-4 z-50">
+    <div className="fixed bottom-0 left-0 right-0 h-12 bg-mac-gray border-t-2 border-black flex items-center justify-center gap-2 px-4 z-50">
       {openWindows.map((win) => {
         const isActive = win.id === activeWindowId;
         const isMinimized = win.isMinimized;
@@ -24,7 +24,7 @@ export const Dock: React.FC = () => {
             key={win.id}
             onClick={() => (isMinimized ? restoreWindow(win.id) : focusWindow(win.id))}
             className={`
-              px-3 py-1 border border-black text-sm font-retro truncate max-w-[150px]
+              px-4 py-1.5 border border-black text-base font-retro truncate max-w-[180px]
               transition-all duration-100
               ${isMinimized ? "opacity-60 italic" : ""}
               ${isActive && !isMinimized ? "bg-white retro-border-inset" : "bg-mac-gray retro-border-outset"}

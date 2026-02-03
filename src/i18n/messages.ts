@@ -148,7 +148,7 @@ export const messages: Record<Lang, Messages> = {
   en: {
     profile: {
       name: "Brucce Villena Terreros",
-      title: "Full Stack Hybrid Developer",
+      title: "Full Stack Developer",
       tagline: "Desktop, Web & Mobile Applications",
       headline: "Building high-performance digital solutions that drive your business growth",
       bio: "Focused on efficient solutions for retail and education. I build robust web and mobile applications with a focus on user experience and scalable architecture.",

@@ -2,7 +2,7 @@
 
 export const profile = {
   name: "Brucce Villena Terreros",
-  title: "Full Stack Hybrid Developer",
+  title: "Full Stack Developer",
   tagline: "React / Node / Flutter",
   headline: "Building high-performance web & mobile solutions that drive business growth",
   location: "Arequipa, Perú",

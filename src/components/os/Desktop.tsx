@@ -87,10 +87,10 @@ const getTransition = (exitReason: ExitReason) => {
   }
   
   if (exitReason === "minimize") {
-    return { duration: 0.25, ease: [0.2, 0.8, 0.2, 1] };
+    return { duration: 0.25, ease: [0.2, 0.8, 0.2, 1] as const };
   }
   
-  return { duration: 0.2, ease: [0.2, 0.8, 0.2, 1] };
+  return { duration: 0.2, ease: [0.2, 0.8, 0.2, 1] as const };
 };
 
 export const Desktop: React.FC = () => {
@@ -134,7 +134,7 @@ export const Desktop: React.FC = () => {
       transition: {
         delay: prefersReducedMotion ? 0 : i * 0.08,
         duration: prefersReducedMotion ? 0.1 : 0.28,
-        ease: [0.2, 0.8, 0.2, 1],
+        ease: [0.2, 0.8, 0.2, 1] as const,
       },
     }),
   };

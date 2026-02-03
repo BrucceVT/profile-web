@@ -19,7 +19,7 @@ export const MenuBar: React.FC = () => {
   const menuItems = [t.menu.file, t.menu.edit, t.menu.view, t.menu.special];
 
   return (
-    <div className="h-9 bg-white border-b-2 border-black flex items-center justify-between px-2 select-none fixed top-0 w-full z-[100] shadow-sm">
+    <div className="bg-white border-b-2 border-black flex items-center justify-between px-2 select-none fixed top-0 w-full z-[100] shadow-sm" style={{ height: "36px" }}>
       {/* Left - Apple logo + menu items */}
       <div className="flex items-center gap-0">
         {/* Apple-like logo */}
@@ -42,7 +42,7 @@ export const MenuBar: React.FC = () => {
         {/* Language Toggle */}
         <button
           onClick={toggleLang}
-          className="flex items-center gap-1 px-2 py-0.5 border border-black bg-mac-gray hover:bg-white retro-border-outset active:retro-border-inset"
+          className="flex items-center gap-1 px-2 py-0.1 border border-black bg-mac-gray hover:bg-white retro-border-outset active:retro-border-inset"
           title={t.menu.language}
         >
           <span className={lang === "es" ? "font-bold" : "opacity-60"}>ES</span>

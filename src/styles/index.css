@@ -18,13 +18,19 @@
   background: linear-gradient(135deg, #1a4a5e 0%, #2d6b7a 50%, #1e5566 100%);
 }
 
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
 body {
   margin: 0;
   overflow: hidden;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   user-select: none;
   cursor: default;
+  touch-action: none;
 }
 
 /* Responsive font size adjustments */

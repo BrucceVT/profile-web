@@ -17,7 +17,7 @@ export const Dock: React.FC = () => {
 
   // Always render Dock, even if empty (for consistent UI)
   return (
-    <div className="fixed bottom-0 left-0 right-0 h-12 bg-mac-gray border-t-2 border-black flex items-center justify-center gap-2 px-4 z-50">
+    <div className="fixed bottom-0 left-0 right-0 bg-mac-gray border-t-2 border-black flex items-center justify-center gap-2 px-4 z-50" style={{ height: "48px" }}>
       <AnimatePresence mode="popLayout">
         {openWindows.length === 0 ? (
           <span className="font-retro text-gray-500 text-sm italic">

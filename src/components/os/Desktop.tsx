@@ -208,6 +208,8 @@ export const Desktop: React.FC = () => {
                 title={getWindowTitle(win.id)}
                 zIndex={win.zIndex}
                 initialPosition={win.position}
+                initialSize={win.size}
+                isMaximized={win.isMaximized}
                 canClose={win.canClose}
               >
                 {windowComponents[win.id] ? (

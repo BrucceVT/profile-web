@@ -81,7 +81,7 @@ export const messages: Record<Lang, Messages> = {
     },
     hero: {
       ctaStatus: "Disponible para proyectos",
-      ctaButton: "Contrátame",
+      ctaButton: "Contáctame",
     },
     icons: {
       about: "Sobre Mí",
@@ -138,7 +138,7 @@ export const messages: Record<Lang, Messages> = {
     },
     hero: {
       ctaStatus: "Available for projects",
-      ctaButton: "Hire me",
+      ctaButton: "Contact me",
     },
     icons: {
       about: "About Me",

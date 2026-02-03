@@ -6,17 +6,16 @@
   --color-mac-gray: #c0c0c0;
   --color-mac-blue: #000080;
   --color-mac-white: #ffffff;
+  --color-mac-teal: #2d5a6b;
   --font-retro: "VT323", monospace;
 }
 
 :root {
   font-family: "VT323", monospace;
-  /* Increased base font size for better legibility */
   font-size: 18px;
   line-height: 1.4;
-  background-color: #555;
-  background-image: radial-gradient(#777 1px, transparent 1px);
-  background-size: 4px 4px;
+  /* Classic teal/blue desktop - Mac OS inspired */
+  background: linear-gradient(135deg, #1a4a5e 0%, #2d6b7a 50%, #1e5566 100%);
 }
 
 body {

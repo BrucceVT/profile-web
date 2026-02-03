@@ -1,4 +1,4 @@
-// DesktopHero - Wallpaper-style hero banner with CTA
+// DesktopHero - Wallpaper-style hero banner with CTA and retro panel
 
 import React from "react";
 import { useI18n } from "@/i18n";
@@ -9,7 +9,7 @@ export const DesktopHero: React.FC = () => {
   const { openWindow } = useWindowManager();
 
   // Handle CTA button click - opens Contact window
-  const handleHireClick = (e: React.MouseEvent) => {
+  const handleContactClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     openWindow("contact", t.windows.contact, { x: 200, y: 140 });
   };
@@ -17,15 +17,22 @@ export const DesktopHero: React.FC = () => {
   return (
     <div
       className="absolute inset-0 flex items-center justify-center pointer-events-none z-0"
-      style={{ paddingTop: "36px", paddingBottom: "56px" }}
+      style={{ paddingTop: "48px", paddingBottom: "64px" }}
     >
-      <div className="text-center px-4 max-w-2xl">
+      {/* Semi-transparent panel for readability - retro style */}
+      <div
+        className="text-center px-8 py-6 max-w-2xl mx-4 bg-black/40 border-2 border-white/30 rounded-sm"
+        style={{
+          backdropFilter: "blur(3px)",
+          boxShadow: "inset 1px 1px 0px rgba(255,255,255,0.2), 2px 2px 8px rgba(0,0,0,0.5)",
+        }}
+      >
         {/* Name */}
         <h1
           className="font-retro text-white mb-2 tracking-wider uppercase"
           style={{
-            fontSize: "clamp(2.5rem, 6vw, 4rem)",
-            textShadow: "3px 3px 0px rgba(0,0,0,0.8), 1px 1px 0px rgba(0,0,0,0.5)",
+            fontSize: "clamp(2.25rem, 5.5vw, 3.5rem)",
+            textShadow: "2px 2px 0px rgba(0,0,0,0.8)",
             lineHeight: 1.1,
           }}
         >
@@ -34,10 +41,10 @@ export const DesktopHero: React.FC = () => {
 
         {/* Title / Role */}
         <h2
-          className="font-retro text-mac-gray mb-4 tracking-wide"
+          className="font-retro text-mac-gray mb-3 tracking-wide"
           style={{
-            fontSize: "clamp(1.25rem, 3vw, 1.75rem)",
-            textShadow: "2px 2px 0px rgba(0,0,0,0.6)",
+            fontSize: "clamp(1.1rem, 2.5vw, 1.5rem)",
+            textShadow: "1px 1px 0px rgba(0,0,0,0.6)",
           }}
         >
           {t.profile.title}
@@ -45,39 +52,36 @@ export const DesktopHero: React.FC = () => {
 
         {/* Headline / Value Proposition */}
         <p
-          className="font-retro text-white/90 max-w-xl mx-auto leading-relaxed"
+          className="font-retro text-white/90 max-w-lg mx-auto leading-relaxed mb-4"
           style={{
-            fontSize: "clamp(1rem, 2.5vw, 1.25rem)",
-            textShadow: "1px 1px 0px rgba(0,0,0,0.5)",
+            fontSize: "clamp(0.95rem, 2vw, 1.15rem)",
+            textShadow: "1px 1px 0px rgba(0,0,0,0.4)",
           }}
         >
           {t.profile.headline}
         </p>
 
         {/* Decorative Tech Stack */}
-        <div
-          className="mt-4 inline-flex gap-2 px-4 py-2 bg-black/30 border border-white/20 rounded"
-          style={{ backdropFilter: "blur(2px)" }}
-        >
-          <span className="font-retro text-white/80 text-lg">
+        <div className="inline-block px-4 py-1.5 bg-white/10 border border-white/20 rounded-sm mb-5">
+          <span className="font-retro text-white/80 text-base">
             {t.profile.tagline}
           </span>
         </div>
 
         {/* CTA Section */}
-        <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 pointer-events-auto">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pointer-events-auto">
           {/* Status Badge */}
-          <div className="flex items-center gap-2 px-3 py-1.5 bg-green-600/80 border border-green-400 rounded-sm">
+          <div className="flex items-center gap-2 px-3 py-1.5 bg-green-700/80 border border-green-500 rounded-sm">
             <span className="w-2 h-2 bg-green-300 rounded-full animate-pulse" />
-            <span className="font-retro text-white text-base">
+            <span className="font-retro text-white text-sm sm:text-base">
               {t.hero.ctaStatus}
             </span>
           </div>
 
-          {/* Hire Me Button - Retro style */}
+          {/* Contact Me Button - Retro style */}
           <button
-            onClick={handleHireClick}
-            className="px-5 py-2 font-retro text-lg font-bold bg-mac-gray border-2 border-black text-black hover:bg-white active:bg-mac-blue active:text-white transition-colors retro-border-outset active:retro-border-inset"
+            onClick={handleContactClick}
+            className="px-5 py-2 font-retro text-base sm:text-lg font-bold bg-mac-gray border-2 border-black text-black hover:bg-white active:bg-mac-blue active:text-white transition-colors retro-border-outset active:retro-border-inset"
           >
             {t.hero.ctaButton}
           </button>

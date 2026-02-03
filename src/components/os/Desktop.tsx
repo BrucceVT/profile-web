@@ -27,11 +27,11 @@ const windowComponents: Record<string, FC> = {
 };
 
 // Icon configurations (static, only IDs and emojis)
+// Note: Contact window is opened via CTA button in DesktopHero, no icon needed
 const iconConfigs = [
   { id: "about", icon: "👨‍💻", windowId: "about" },
   { id: "projects", icon: "📂", windowId: "projects" },
   { id: "skills", icon: "🛠️", windowId: "skills" },
-  { id: "contact", icon: "☎️", windowId: "contact" },
 ];
 
 const trashConfig = { id: "trash", icon: "🗑️", windowId: "trash" };
@@ -78,9 +78,7 @@ export const Desktop: React.FC = () => {
     <div
       className="h-screen w-screen overflow-hidden relative"
       style={{
-        backgroundColor: "#555",
-        backgroundImage: "radial-gradient(#777 1px, transparent 1px)",
-        backgroundSize: "4px 4px",
+        background: "linear-gradient(135deg, #1a4a5e 0%, #2d6b7a 50%, #1e5566 100%)",
       }}
       onClick={handleDesktopClick}
     >

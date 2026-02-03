@@ -16,6 +16,14 @@ export interface Messages {
     ctaStatus: string;
     ctaButton: string;
   };
+  // Boot screen
+  boot: {
+    title: string;
+    subtitle: string;
+    loading: string;
+    starting: string;
+    skipHint: string;
+  };
   // Desktop Icons
   icons: {
     about: string;
@@ -31,6 +39,7 @@ export interface Messages {
     skills: string;
     contact: string;
     trash: string;
+    welcome: string;
   };
   // Menu
   menu: {
@@ -74,7 +83,7 @@ export const messages: Record<Lang, Messages> = {
   es: {
     profile: {
       name: "Brucce Villena Terreros",
-      title: "Desarrollador Full Stack Híbrido",
+      title: "Desarrollador Full Stack",
       tagline: "Aplicaciones de Escritorio, Web y Móviles",
       headline: "Construyo soluciones digitales de alto rendimiento que impulsan el crecimiento de tu negocio",
       bio: "Enfocado en soluciones eficientes para retail y educación. Desarrollo aplicaciones web y móviles robustas con énfasis en experiencia de usuario y arquitectura escalable.",
@@ -82,6 +91,13 @@ export const messages: Record<Lang, Messages> = {
     hero: {
       ctaStatus: "Disponible para proyectos",
       ctaButton: "Contáctame",
+    },
+    boot: {
+      title: "Brucce Villena",
+      subtitle: "Portfolio",
+      loading: "Cargando escritorio...",
+      starting: "Iniciando...",
+      skipHint: "Click o Enter para continuar",
     },
     icons: {
       about: "Sobre Mí",
@@ -96,6 +112,7 @@ export const messages: Record<Lang, Messages> = {
       skills: "Habilidades Técnicas",
       contact: "Tarjeta de Contacto",
       trash: "Papelera",
+      welcome: "Bienvenido",
     },
     menu: {
       file: "Archivo",
@@ -140,6 +157,13 @@ export const messages: Record<Lang, Messages> = {
       ctaStatus: "Available for projects",
       ctaButton: "Contact me",
     },
+    boot: {
+      title: "Brucce Villena",
+      subtitle: "Portfolio",
+      loading: "Loading desktop...",
+      starting: "Starting...",
+      skipHint: "Click or press Enter to continue",
+    },
     icons: {
       about: "About Me",
       projects: "Projects",
@@ -153,6 +177,7 @@ export const messages: Record<Lang, Messages> = {
       skills: "Technical Skills",
       contact: "Contact Card",
       trash: "Trash",
+      welcome: "Welcome",
     },
     menu: {
       file: "File",

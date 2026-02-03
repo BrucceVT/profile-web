@@ -1,8 +1,13 @@
-// Window component - Draggable window with constraints
+// Window component - Draggable window with Mac-like animations
 
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useWindowManager } from "@/context/WindowManager";
+
+// Check for reduced motion preference
+const prefersReducedMotion =
+  typeof window !== "undefined" &&
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 interface WindowProps {
   id: string;
@@ -10,7 +15,10 @@ interface WindowProps {
   children: React.ReactNode;
   zIndex: number;
   initialPosition: { x: number; y: number };
+  canClose?: boolean;
 }
+
+// Mac-like easing is handled in Desktop.tsx animation variants
 
 export const Window: React.FC<WindowProps> = ({
   id,
@@ -18,6 +26,7 @@ export const Window: React.FC<WindowProps> = ({
   children,
   zIndex,
   initialPosition,
+  canClose = true,
 }) => {
   const { closeWindow, focusWindow, minimizeWindow, activeWindowId, updateWindowPosition } =
     useWindowManager();
@@ -46,6 +55,20 @@ export const Window: React.FC<WindowProps> = ({
     updateWindowPosition(id, newPosition);
   };
 
+  // Handle close with defense
+  const handleClose = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (canClose) {
+      closeWindow(id);
+    }
+  };
+
+  // Handle minimize
+  const handleMinimize = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    minimizeWindow(id);
+  };
+
   return (
     <motion.div
       ref={containerRef}
@@ -69,7 +92,16 @@ export const Window: React.FC<WindowProps> = ({
         zIndex: zIndex,
         width: "min(600px, 90vw)",
       }}
-      className="bg-mac-gray border border-black shadow-[2px_2px_0px_rgba(0,0,0,0.5)] flex flex-col retro-border-outset"
+      className="bg-mac-gray border border-black flex flex-col retro-border-outset"
+      // Dynamic shadow based on active state with smooth transition
+      animate={{
+        boxShadow: isActive
+          ? "3px 3px 0px rgba(0,0,0,0.6), 0 8px 24px rgba(0,0,0,0.25)"
+          : "2px 2px 0px rgba(0,0,0,0.4)",
+      }}
+      transition={{
+        boxShadow: { duration: prefersReducedMotion ? 0 : 0.12 },
+      }}
     >
       {/* Title Bar */}
       <div
@@ -79,18 +111,22 @@ export const Window: React.FC<WindowProps> = ({
           height: "28px",
         }}
       >
-        {/* Close Button */}
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            closeWindow(id);
-          }}
-          className="w-5 h-5 bg-white border border-black flex items-center justify-center text-sm font-bold hover:bg-red-100 active:bg-black active:text-white"
-          style={{ boxShadow: "inset 1px 1px 0px #fff, inset -1px -1px 0px #888" }}
-          title="Close"
-        >
-          ×
-        </button>
+        {/* Close Button - Only render if canClose is true */}
+        {canClose ? (
+          <motion.button
+            onClick={handleClose}
+            whileHover={{ scale: prefersReducedMotion ? 1 : 1.1 }}
+            whileTap={{ scale: prefersReducedMotion ? 1 : 0.95 }}
+            className="w-5 h-5 bg-white border border-black flex items-center justify-center text-sm font-bold hover:bg-red-100 active:bg-red-500 active:text-white transition-colors"
+            style={{ boxShadow: "inset 1px 1px 0px #fff, inset -1px -1px 0px #888" }}
+            title="Close"
+          >
+            ×
+          </motion.button>
+        ) : (
+          // Empty spacer to maintain layout
+          <div className="w-5 h-5" />
+        )}
 
         {/* Title */}
         <span
@@ -104,17 +140,16 @@ export const Window: React.FC<WindowProps> = ({
         </span>
 
         {/* Minimize Button */}
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            minimizeWindow(id);
-          }}
-          className="w-5 h-5 bg-white border border-black flex items-center justify-center text-sm font-bold hover:bg-yellow-100 active:bg-black active:text-white"
+        <motion.button
+          onClick={handleMinimize}
+          whileHover={{ scale: prefersReducedMotion ? 1 : 1.1 }}
+          whileTap={{ scale: prefersReducedMotion ? 1 : 0.95 }}
+          className="w-5 h-5 bg-white border border-black flex items-center justify-center text-sm font-bold hover:bg-yellow-100 active:bg-yellow-500 active:text-white transition-colors"
           style={{ boxShadow: "inset 1px 1px 0px #fff, inset -1px -1px 0px #888" }}
           title="Minimize"
         >
           −
-        </button>
+        </motion.button>
       </div>
 
       {/* Content Area */}

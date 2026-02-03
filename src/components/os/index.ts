@@ -1,4 +1,5 @@
 // OS components barrel export
+export { BootScreen } from "./BootScreen";
 export { Desktop } from "./Desktop";
 export { DesktopIcon } from "./DesktopIcon";
 export { DesktopHero } from "./DesktopHero";

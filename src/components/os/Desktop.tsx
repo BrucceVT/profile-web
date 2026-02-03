@@ -1,11 +1,11 @@
 // Desktop - Main desktop component with icons and windows
 
 import React, { type FC } from "react";
-import { useWindowManager } from "@/context/WindowManager";
+import { motion, AnimatePresence } from "framer-motion";
+import { useWindowManager, type ExitReason } from "@/context/WindowManager";
 import { useDesktopSelection } from "@/hooks";
 import { useI18n } from "@/i18n";
 import { MenuBar } from "./MenuBar";
-import { DesktopHero } from "./DesktopHero";
 import { DesktopIcon } from "./DesktopIcon";
 import { Dock } from "./Dock";
 import { Window } from "./Window";
@@ -15,6 +15,7 @@ import {
   SkillsWindow,
   ContactWindow,
   TrashWindow,
+  WelcomeWindow,
 } from "@/features";
 
 // Window component registry
@@ -24,10 +25,10 @@ const windowComponents: Record<string, FC> = {
   skills: SkillsWindow,
   contact: ContactWindow,
   trash: TrashWindow,
+  welcome: WelcomeWindow,
 };
 
 // Icon configurations (static, only IDs and emojis)
-// Note: Contact window is opened via CTA button in DesktopHero, no icon needed
 const iconConfigs = [
   { id: "about", icon: "👨‍💻", windowId: "about" },
   { id: "projects", icon: "📂", windowId: "projects" },
@@ -38,15 +39,62 @@ const trashConfig = { id: "trash", icon: "🗑️", windowId: "trash" };
 
 // Default positions for windows
 const windowPositions: Record<string, { x: number; y: number }> = {
-  about: { x: 50, y: 50 },
-  projects: { x: 100, y: 80 },
-  skills: { x: 150, y: 110 },
-  contact: { x: 200, y: 140 },
-  trash: { x: 250, y: 170 },
+  about: { x: 60, y: 70 },
+  projects: { x: 110, y: 100 },
+  skills: { x: 160, y: 130 },
+  contact: { x: 210, y: 160 },
+  trash: { x: 260, y: 190 },
+  welcome: { x: 100, y: 70 },
+};
+
+// Check for reduced motion preference
+const prefersReducedMotion =
+  typeof window !== "undefined" &&
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// Mac-like animation variants
+const getWindowVariants = (exitReason: ExitReason) => {
+  const openVariant = prefersReducedMotion
+    ? { opacity: 1 }
+    : { opacity: 1, scale: 1, y: 0 };
+
+  const initialVariant = prefersReducedMotion
+    ? { opacity: 0 }
+    : { opacity: 0, scale: 0.96, y: 10 };
+
+  // Different exit animations for minimize vs close
+  let exitVariant;
+  if (prefersReducedMotion) {
+    exitVariant = { opacity: 0 };
+  } else if (exitReason === "minimize") {
+    // Minimize: shrink and move toward dock (bottom)
+    exitVariant = { opacity: 0, scale: 0.88, y: 120 };
+  } else {
+    // Close: fade with slight shrink
+    exitVariant = { opacity: 0, scale: 0.98, y: 8 };
+  }
+
+  return {
+    initial: initialVariant,
+    animate: openVariant,
+    exit: exitVariant,
+  };
+};
+
+const getTransition = (exitReason: ExitReason) => {
+  if (prefersReducedMotion) {
+    return { duration: 0.1 };
+  }
+  
+  if (exitReason === "minimize") {
+    return { duration: 0.25, ease: [0.2, 0.8, 0.2, 1] };
+  }
+  
+  return { duration: 0.2, ease: [0.2, 0.8, 0.2, 1] };
 };
 
 export const Desktop: React.FC = () => {
-  const { windows, openWindow } = useWindowManager();
+  const { windows, openWindow, exitReasons } = useWindowManager();
   const { t } = useI18n();
   const allIcons = [...iconConfigs, trashConfig];
   const iconIds = allIcons.map((icon) => icon.id);
@@ -74,8 +122,28 @@ export const Desktop: React.FC = () => {
     clearSelection();
   };
 
+  // Stagger animation for icons
+  const iconVariants = {
+    hidden: prefersReducedMotion 
+      ? { opacity: 0 } 
+      : { opacity: 0, y: 20, scale: 0.9 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        delay: prefersReducedMotion ? 0 : i * 0.08,
+        duration: prefersReducedMotion ? 0.1 : 0.28,
+        ease: [0.2, 0.8, 0.2, 1],
+      },
+    }),
+  };
+
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: prefersReducedMotion ? 0.1 : 0.25 }}
       className="h-screen w-screen overflow-hidden relative"
       style={{
         background: "linear-gradient(135deg, #1a4a5e 0%, #2d6b7a 50%, #1e5566 100%)",
@@ -85,26 +153,36 @@ export const Desktop: React.FC = () => {
       {/* Menu Bar */}
       <MenuBar />
 
-      {/* Hero Banner (wallpaper-style) */}
-      <DesktopHero />
-
       {/* Desktop Icons Area */}
       <div className="pt-12 pb-14 px-4 h-full flex flex-col flex-wrap content-start gap-2">
-        {/* Main Icons */}
-        {iconConfigs.map((icon) => (
-          <DesktopIcon
+        {/* Main Icons with stagger animation */}
+        {iconConfigs.map((icon, index) => (
+          <motion.div
             key={icon.id}
-            id={icon.id}
-            label={getIconLabel(icon.id)}
-            icon={icon.icon}
-            isSelected={selectedIconId === icon.id}
-            onSelect={selectIcon}
-            onOpen={() => handleOpenWindow(icon.windowId)}
-          />
+            custom={index}
+            initial="hidden"
+            animate="visible"
+            variants={iconVariants}
+          >
+            <DesktopIcon
+              id={icon.id}
+              label={getIconLabel(icon.id)}
+              icon={icon.icon}
+              isSelected={selectedIconId === icon.id}
+              onSelect={selectIcon}
+              onOpen={() => handleOpenWindow(icon.windowId)}
+            />
+          </motion.div>
         ))}
 
         {/* Trash Icon - Bottom Right */}
-        <div className="absolute bottom-14 right-4">
+        <motion.div
+          className="absolute bottom-14 right-4"
+          initial="hidden"
+          animate="visible"
+          custom={iconConfigs.length}
+          variants={iconVariants}
+        >
           <DesktopIcon
             id={trashConfig.id}
             label={getIconLabel(trashConfig.id)}
@@ -113,30 +191,38 @@ export const Desktop: React.FC = () => {
             onSelect={selectIcon}
             onOpen={() => handleOpenWindow(trashConfig.windowId)}
           />
-        </div>
+        </motion.div>
       </div>
 
-      {/* Windows Layer */}
-      {windows.map((win) =>
-        win.isOpen && !win.isMinimized ? (
-          <Window
-            key={win.id}
-            id={win.id}
-            title={getWindowTitle(win.id)}
-            zIndex={win.zIndex}
-            initialPosition={win.position}
-          >
-            {windowComponents[win.id] ? (
-              React.createElement(windowComponents[win.id])
-            ) : (
-              <div className="p-4 font-retro">Unknown window: {win.id}</div>
-            )}
-          </Window>
-        ) : null
-      )}
+      {/* Windows Layer with Mac-like animations */}
+      <AnimatePresence mode="popLayout">
+        {windows.map((win) =>
+          win.isOpen && !win.isMinimized ? (
+            <motion.div
+              key={win.id}
+              {...getWindowVariants(exitReasons[win.id] || null)}
+              transition={getTransition(exitReasons[win.id] || null)}
+            >
+              <Window
+                id={win.id}
+                title={getWindowTitle(win.id)}
+                zIndex={win.zIndex}
+                initialPosition={win.position}
+                canClose={win.canClose}
+              >
+                {windowComponents[win.id] ? (
+                  React.createElement(windowComponents[win.id])
+                ) : (
+                  <div className="p-4 font-retro">Unknown window: {win.id}</div>
+                )}
+              </Window>
+            </motion.div>
+          ) : null
+        )}
+      </AnimatePresence>
 
-      {/* Dock */}
+      {/* Dock - Always visible */}
       <Dock />
-    </div>
+    </motion.div>
   );
 };

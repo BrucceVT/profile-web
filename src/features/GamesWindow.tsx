@@ -27,7 +27,7 @@ export const GamesWindow: React.FC = () => {
         focusWindow(game.windowId);
       }
     } else {
-      openWindow(game.windowId, game.name, { x: 150, y: 100 });
+      openWindow(game.windowId, game.name);
     }
   };
 

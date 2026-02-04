@@ -160,8 +160,14 @@ export const WindowManagerProvider: React.FC<WindowManagerProviderProps> = ({
             );
           }
 
-          // Create new window
-          const safePosition = position || { x: 100, y: 100 };
+          // Calculate centered position if not provided
+          const workArea = getWorkArea();
+          const windowWidth = DEFAULT_SIZE.width;
+          const windowHeight = DEFAULT_SIZE.height;
+          const centerX = Math.max(0, (workArea.width - windowWidth) / 2);
+          const centerY = Math.max(workArea.top, workArea.top + (workArea.height - windowHeight) / 2);
+          
+          const safePosition = position || { x: centerX, y: centerY };
           const windowCanClose = canClose ?? !UNCLOSABLE_WINDOWS.includes(id);
           
           return [
@@ -187,7 +193,7 @@ export const WindowManagerProvider: React.FC<WindowManagerProviderProps> = ({
       // Clear exit reason on open
       setExitReasons((prev) => ({ ...prev, [id]: null }));
     },
-    []
+    [getWorkArea]
   );
 
   const closeWindow = useCallback((id: string) => {

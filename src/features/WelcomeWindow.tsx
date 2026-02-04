@@ -20,7 +20,7 @@ export const WelcomeWindow: React.FC = () => {
         focusWindow("contact");
       }
     } else {
-      openWindow("contact", t.windows.contact, { x: 250, y: 180 });
+      openWindow("contact", t.windows.contact);
     }
   };
 

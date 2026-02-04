@@ -17,12 +17,20 @@ const AppContent: React.FC<{ isBooting: boolean; onBootComplete: () => void }> =
     return <BootScreen onComplete={onBootComplete} duration={2200} />;
   }
 
+  // Calculate centered position for welcome window
+  const windowWidth = 600;
+  const windowHeight = 520;
+  const viewportWidth = typeof window !== "undefined" ? window.innerWidth : 1200;
+  const viewportHeight = typeof window !== "undefined" ? window.innerHeight : 800;
+  const centerX = Math.max(0, (viewportWidth - windowWidth) / 2);
+  const centerY = Math.max(36, 36 + (viewportHeight - 36 - 48 - windowHeight) / 2);
+  
   // Welcome window opens immediately with the correct translated title
   // canClose: false ensures it cannot be closed
   const initialWindow = {
     id: "welcome",
     title: t.windows.welcome,
-    position: { x: 100, y: 70 },
+    position: { x: centerX, y: centerY },
     canClose: false,
   };
 

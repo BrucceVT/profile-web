@@ -42,17 +42,6 @@ const iconConfigs = [
 
 const trashConfig = { id: "trash", iconSrc: "/icons/trash.png", windowId: "trash" };
 
-// Default positions for windows
-const windowPositions: Record<string, { x: number; y: number }> = {
-  about: { x: 60, y: 70 },
-  projects: { x: 110, y: 100 },
-  skills: { x: 160, y: 130 },
-  contact: { x: 210, y: 160 },
-  trash: { x: 260, y: 190 },
-  welcome: { x: 100, y: 70 },
-  games: { x: 130, y: 120 },
-  minesweeper: { x: 180, y: 90 },
-};
 
 // Check for reduced motion preference
 const prefersReducedMotion =
@@ -150,11 +139,10 @@ export const Desktop: React.FC = () => {
     return t.windows[id as keyof typeof t.windows] || id;
   };
 
-  // Handle opening a window
+  // Handle opening a window - no position passed = auto-center
   const handleOpenWindow = (windowId: string) => {
-    const position = windowPositions[windowId] || { x: 100, y: 100 };
     const title = getWindowTitle(windowId);
-    openWindow(windowId, title, position);
+    openWindow(windowId, title);  // No position = centered
   };
 
   // Click on desktop background clears selection

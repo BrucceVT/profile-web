@@ -11,7 +11,7 @@ export const DesktopHero: React.FC = () => {
   // Handle CTA button click - opens Contact window
   const handleContactClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    openWindow("contact", t.windows.contact, { x: 200, y: 140 });
+    openWindow("contact", t.windows.contact);
   };
 
   return (

@@ -405,14 +405,11 @@ export const Window: React.FC<WindowProps> = ({
       {/* Resize Handles */}
       {!isMaximized && (
         <>
-          {/* Edges */}
-          <div className="absolute top-0 left-3 right-3 h-1.5 z-10" style={{ cursor: "ns-resize", touchAction: "none" }} onPointerDown={(e) => handleResizeStart(e, "n")} />
+          {/* Edges - top edge starts after title bar */}
           <div className="absolute bottom-0 left-3 right-3 h-1.5 z-10" style={{ cursor: "ns-resize", touchAction: "none" }} onPointerDown={(e) => handleResizeStart(e, "s")} />
-          <div className="absolute right-0 top-3 bottom-3 w-1.5 z-10" style={{ cursor: "ew-resize", touchAction: "none" }} onPointerDown={(e) => handleResizeStart(e, "e")} />
-          <div className="absolute left-0 top-3 bottom-3 w-1.5 z-10" style={{ cursor: "ew-resize", touchAction: "none" }} onPointerDown={(e) => handleResizeStart(e, "w")} />
-          {/* Corners */}
-          <div className="absolute top-0 left-0 w-4 h-4 z-20" style={{ cursor: "nwse-resize", touchAction: "none" }} onPointerDown={(e) => handleResizeStart(e, "nw")} />
-          <div className="absolute top-0 right-0 w-4 h-4 z-20" style={{ cursor: "nesw-resize", touchAction: "none" }} onPointerDown={(e) => handleResizeStart(e, "ne")} />
+          <div className="absolute right-0 top-8 bottom-3 w-1.5 z-10" style={{ cursor: "ew-resize", touchAction: "none" }} onPointerDown={(e) => handleResizeStart(e, "e")} />
+          <div className="absolute left-0 top-8 bottom-3 w-1.5 z-10" style={{ cursor: "ew-resize", touchAction: "none" }} onPointerDown={(e) => handleResizeStart(e, "w")} />
+          {/* Corners - top corners positioned below title bar to avoid buttons */}
           <div className="absolute bottom-0 left-0 w-4 h-4 z-20" style={{ cursor: "nesw-resize", touchAction: "none" }} onPointerDown={(e) => handleResizeStart(e, "sw")} />
           <div className="absolute bottom-0 right-0 w-4 h-4 z-20" style={{ cursor: "nwse-resize", touchAction: "none" }} onPointerDown={(e) => handleResizeStart(e, "se")} />
         </>

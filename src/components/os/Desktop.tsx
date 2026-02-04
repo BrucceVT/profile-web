@@ -1,9 +1,9 @@
 // Desktop - Main desktop component with icons and windows
 
-import React, { type FC } from "react";
+import React, { type FC, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useWindowManager, type ExitReason } from "@/context/WindowManager";
-import { useDesktopSelection } from "@/hooks";
+import { useDesktopSelection, useIconDrag } from "@/hooks";
 import { useI18n } from "@/i18n";
 import { MenuBar } from "./MenuBar";
 import { DesktopIcon } from "./DesktopIcon";
@@ -106,6 +106,39 @@ export const Desktop: React.FC = () => {
   const allIcons = [...iconConfigs, trashConfig];
   const iconIds = allIcons.map((icon) => icon.id);
   const { selectedIconId, selectIcon, clearSelection } = useDesktopSelection(iconIds);
+  
+  // Icon drag functionality
+  const {
+    containerRef,
+    getIconPosition,
+    startDrag,
+    updateDrag,
+    endDrag,
+    draggingId,
+  } = useIconDrag(iconIds, "trash");
+
+  // Global mouse event handlers for dragging
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (draggingId) {
+        updateDrag(e.clientX, e.clientY);
+      }
+    };
+
+    const handleMouseUp = () => {
+      if (draggingId) {
+        endDrag();
+      }
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseup", handleMouseUp);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, [draggingId, updateDrag, endDrag]);
 
   // Get translated label for an icon
   const getIconLabel = (id: string): string => {
@@ -160,45 +193,48 @@ export const Desktop: React.FC = () => {
       {/* Menu Bar */}
       <MenuBar />
 
-      {/* Desktop Icons Area */}
-      <div className="pt-12 pb-14 px-4 h-full flex flex-col flex-wrap content-start gap-2">
-        {/* Main Icons with stagger animation */}
-        {iconConfigs.map((icon, index) => (
-          <motion.div
-            key={icon.id}
-            custom={index}
-            initial="hidden"
-            animate="visible"
-            variants={iconVariants}
-          >
-            <DesktopIcon
-              id={icon.id}
-              label={getIconLabel(icon.id)}
-              iconSrc={icon.iconSrc}
-              isSelected={selectedIconId === icon.id}
-              onSelect={selectIcon}
-              onOpen={() => handleOpenWindow(icon.windowId)}
-            />
-          </motion.div>
-        ))}
-
-        {/* Trash Icon - Bottom Right */}
-        <motion.div
-          className="absolute bottom-14 right-4"
-          initial="hidden"
-          animate="visible"
-          custom={iconConfigs.length}
-          variants={iconVariants}
-        >
-          <DesktopIcon
-            id={trashConfig.id}
-            label={getIconLabel(trashConfig.id)}
-            iconSrc={trashConfig.iconSrc}
-            isSelected={selectedIconId === trashConfig.id}
-            onSelect={selectIcon}
-            onOpen={() => handleOpenWindow(trashConfig.windowId)}
-          />
-        </motion.div>
+      {/* Desktop Icons Area - Absolute positioning for drag support */}
+      <div 
+        ref={containerRef}
+        className="absolute inset-0 pt-12 pb-14 overflow-hidden"
+        style={{ pointerEvents: "none" }}
+      >
+        {/* All Icons with drag support */}
+        {allIcons.map((icon, index) => {
+          const pos = getIconPosition(icon.id);
+          const isDragging = draggingId === icon.id;
+          
+          return (
+            <motion.div
+              key={icon.id}
+              className="absolute"
+              style={{
+                left: pos.x,
+                top: pos.y,
+                zIndex: isDragging ? 1000 : 1,
+                cursor: isDragging ? "grabbing" : "grab",
+                pointerEvents: "auto",
+              }}
+              initial="hidden"
+              animate="visible"
+              custom={index}
+              variants={iconVariants}
+              onMouseDown={(e) => {
+                e.preventDefault();
+                startDrag(icon.id, e.clientX, e.clientY);
+              }}
+            >
+              <DesktopIcon
+                id={icon.id}
+                label={getIconLabel(icon.id)}
+                iconSrc={icon.iconSrc}
+                isSelected={selectedIconId === icon.id}
+                onSelect={selectIcon}
+                onOpen={() => handleOpenWindow(icon.windowId)}
+              />
+            </motion.div>
+          );
+        })}
       </div>
 
       {/* Windows Layer with Mac-like animations */}

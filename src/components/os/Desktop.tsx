@@ -18,6 +18,7 @@ import {
   WelcomeWindow,
   GamesWindow,
   MinesweeperWindow,
+  TetrisWindow,
 } from "@/features";
 
 // Window component registry
@@ -30,6 +31,7 @@ const windowComponents: Record<string, FC> = {
   welcome: WelcomeWindow,
   games: GamesWindow,
   minesweeper: MinesweeperWindow,
+  tetris: TetrisWindow,
 };
 
 // Icon configurations (static, uses PNG icon sources)

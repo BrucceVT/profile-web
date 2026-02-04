@@ -7,3 +7,4 @@ export { TrashWindow } from "./TrashWindow";
 export { WelcomeWindow } from "./WelcomeWindow";
 export { GamesWindow } from "./GamesWindow";
 export { MinesweeperWindow } from "./MinesweeperWindow";
+export { TetrisWindow } from "./TetrisWindow";

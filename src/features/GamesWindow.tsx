@@ -12,6 +12,7 @@ interface GameItem {
 
 const GAMES: GameItem[] = [
   { id: "minesweeper", name: "Buscaminas", icon: "/icons/minesweeper.png", windowId: "minesweeper" },
+  { id: "tetris", name: "Tetris", icon: "/icons/tetris.png", windowId: "tetris" },
 ];
 
 export const GamesWindow: React.FC = () => {

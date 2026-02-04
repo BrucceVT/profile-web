@@ -73,6 +73,12 @@ const UNCLOSABLE_WINDOWS = ["welcome"];
 // Default window size - larger for better readability
 const DEFAULT_SIZE: WindowSize = { width: 600, height: 500 };
 
+// Window-specific sizes
+const WINDOW_SIZES: Record<string, WindowSize> = {
+  tetris: { width: 520, height: 650 },
+  minesweeper: { width: 550, height: 480 },
+};
+
 interface WindowManagerProviderProps {
   children: ReactNode;
   initialWindow?: {
@@ -162,8 +168,9 @@ export const WindowManagerProvider: React.FC<WindowManagerProviderProps> = ({
 
           // Calculate centered position if not provided
           const workArea = getWorkArea();
-          const windowWidth = DEFAULT_SIZE.width;
-          const windowHeight = DEFAULT_SIZE.height;
+          const windowSize = WINDOW_SIZES[id] || DEFAULT_SIZE;
+          const windowWidth = windowSize.width;
+          const windowHeight = windowSize.height;
           const centerX = Math.max(0, (workArea.width - windowWidth) / 2);
           const centerY = Math.max(workArea.top, workArea.top + (workArea.height - windowHeight) / 2);
           
@@ -181,7 +188,7 @@ export const WindowManagerProvider: React.FC<WindowManagerProviderProps> = ({
               canClose: windowCanClose,
               zIndex: newZ,
               position: safePosition,
-              size: { ...DEFAULT_SIZE },
+              size: { ...windowSize },
               restoreBounds: null,
             },
           ];

@@ -2,7 +2,7 @@
 
 import React from "react";
 
-// Icon source mapping for desktop icons (from tstamborski/pixelart-icons CC0)
+// Icon source mapping for desktop icons
 export const DESKTOP_ICON_SOURCES: Record<string, string> = {
   about: "/icons/about.png",
   projects: "/icons/projects.png",
@@ -10,6 +10,8 @@ export const DESKTOP_ICON_SOURCES: Record<string, string> = {
   trash: "/icons/trash.png",
   contact: "/icons/contact.png",
   welcome: "/icons/welcome.png",
+  games: "/icons/games.png",
+  minesweeper: "/icons/minesweeper.png",
 };
 
 interface DesktopIconProps {

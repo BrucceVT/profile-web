@@ -16,6 +16,8 @@ import {
   ContactWindow,
   TrashWindow,
   WelcomeWindow,
+  GamesWindow,
+  MinesweeperWindow,
 } from "@/features";
 
 // Window component registry
@@ -26,13 +28,16 @@ const windowComponents: Record<string, FC> = {
   contact: ContactWindow,
   trash: TrashWindow,
   welcome: WelcomeWindow,
+  games: GamesWindow,
+  minesweeper: MinesweeperWindow,
 };
 
-// Icon configurations (static, uses PNG icon sources from tstamborski/pixelart-icons CC0)
+// Icon configurations (static, uses PNG icon sources)
 const iconConfigs = [
   { id: "about", iconSrc: "/icons/about.png", windowId: "about" },
   { id: "projects", iconSrc: "/icons/projects.png", windowId: "projects" },
   { id: "skills", iconSrc: "/icons/skills.png", windowId: "skills" },
+  { id: "games", iconSrc: "/icons/games.png", windowId: "games" },
 ];
 
 const trashConfig = { id: "trash", iconSrc: "/icons/trash.png", windowId: "trash" };
@@ -45,6 +50,8 @@ const windowPositions: Record<string, { x: number; y: number }> = {
   contact: { x: 210, y: 160 },
   trash: { x: 260, y: 190 },
   welcome: { x: 100, y: 70 },
+  games: { x: 130, y: 120 },
+  minesweeper: { x: 180, y: 90 },
 };
 
 // Check for reduced motion preference

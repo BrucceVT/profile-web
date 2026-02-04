@@ -31,6 +31,7 @@ export interface Messages {
     skills: string;
     contact: string;
     trash: string;
+    games: string;
   };
   // Window Titles
   windows: {
@@ -40,6 +41,8 @@ export interface Messages {
     contact: string;
     trash: string;
     welcome: string;
+    games: string;
+    minesweeper: string;
   };
   // Menu
   menu: {
@@ -105,6 +108,7 @@ export const messages: Record<Lang, Messages> = {
       skills: "Habilidades",
       contact: "Contacto",
       trash: "Papelera",
+      games: "Juegos",
     },
     windows: {
       about: "Sobre Mí",
@@ -113,6 +117,8 @@ export const messages: Record<Lang, Messages> = {
       contact: "Tarjeta de Contacto",
       trash: "Papelera",
       welcome: "Bienvenido",
+      games: "Juegos",
+      minesweeper: "Buscaminas",
     },
     menu: {
       file: "Archivo",
@@ -170,6 +176,7 @@ export const messages: Record<Lang, Messages> = {
       skills: "Skills",
       contact: "Contact",
       trash: "Trash",
+      games: "Games",
     },
     windows: {
       about: "About Me",
@@ -178,6 +185,8 @@ export const messages: Record<Lang, Messages> = {
       contact: "Contact Card",
       trash: "Trash",
       welcome: "Welcome",
+      games: "Games",
+      minesweeper: "Minesweeper",
     },
     menu: {
       file: "File",

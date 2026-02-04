@@ -28,14 +28,14 @@ const windowComponents: Record<string, FC> = {
   welcome: WelcomeWindow,
 };
 
-// Icon configurations (static, only IDs and emojis)
+// Icon configurations (static, uses PNG icon sources from tstamborski/pixelart-icons CC0)
 const iconConfigs = [
-  { id: "about", icon: "👨‍💻", windowId: "about" },
-  { id: "projects", icon: "📂", windowId: "projects" },
-  { id: "skills", icon: "🛠️", windowId: "skills" },
+  { id: "about", iconSrc: "/icons/about.png", windowId: "about" },
+  { id: "projects", iconSrc: "/icons/projects.png", windowId: "projects" },
+  { id: "skills", iconSrc: "/icons/skills.png", windowId: "skills" },
 ];
 
-const trashConfig = { id: "trash", icon: "🗑️", windowId: "trash" };
+const trashConfig = { id: "trash", iconSrc: "/icons/trash.png", windowId: "trash" };
 
 // Default positions for windows
 const windowPositions: Record<string, { x: number; y: number }> = {
@@ -167,7 +167,7 @@ export const Desktop: React.FC = () => {
             <DesktopIcon
               id={icon.id}
               label={getIconLabel(icon.id)}
-              icon={icon.icon}
+              iconSrc={icon.iconSrc}
               isSelected={selectedIconId === icon.id}
               onSelect={selectIcon}
               onOpen={() => handleOpenWindow(icon.windowId)}
@@ -186,7 +186,7 @@ export const Desktop: React.FC = () => {
           <DesktopIcon
             id={trashConfig.id}
             label={getIconLabel(trashConfig.id)}
-            icon={trashConfig.icon}
+            iconSrc={trashConfig.iconSrc}
             isSelected={selectedIconId === trashConfig.id}
             onSelect={selectIcon}
             onOpen={() => handleOpenWindow(trashConfig.windowId)}

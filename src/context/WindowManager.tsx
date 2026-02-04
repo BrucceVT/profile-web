@@ -100,7 +100,7 @@ export const WindowManagerProvider: React.FC<WindowManagerProviderProps> = ({
         canClose: initialWindow.canClose ?? !UNCLOSABLE_WINDOWS.includes(initialWindow.id),
         zIndex: BASE_Z_INDEX + 1,
         position: initialWindow.position,
-        size: initialWindow.size || { width: 420, height: 380 },
+        size: initialWindow.size || { width: 500, height: 450 },
         restoreBounds: null,
       }];
     }

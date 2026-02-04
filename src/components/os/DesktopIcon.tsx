@@ -56,15 +56,15 @@ export const DesktopIcon: React.FC<DesktopIconProps> = ({
     >
       {/* Retro PNG Icon */}
       <div 
-        className="w-14 h-14 flex items-center justify-center"
+        className="w-20 h-20 flex items-center justify-center"
       >
         <img
           src={resolvedIconSrc}
           alt=""
           aria-hidden="true"
           draggable={false}
-          width={48}
-          height={48}
+          width={64}
+          height={64}
           className={`
             transition-transform duration-100
             hover:scale-105

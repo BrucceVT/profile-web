@@ -199,8 +199,8 @@ export const Desktop: React.FC = () => {
         className="absolute inset-0 pt-12 pb-14 overflow-hidden"
         style={{ pointerEvents: "none" }}
       >
-        {/* All Icons with drag support */}
-        {allIcons.map((icon, index) => {
+        {/* Draggable Icons (excluding trash) */}
+        {iconConfigs.map((icon, index) => {
           const pos = getIconPosition(icon.id);
           const isDragging = draggingId === icon.id;
           
@@ -235,6 +235,31 @@ export const Desktop: React.FC = () => {
             </motion.div>
           );
         })}
+
+        {/* Trash Icon - Fixed at bottom right with CSS */}
+        <motion.div
+          className="absolute"
+          style={{
+            right: 16,
+            bottom: 70,
+            zIndex: 1,
+            cursor: "pointer",
+            pointerEvents: "auto",
+          }}
+          initial="hidden"
+          animate="visible"
+          custom={iconConfigs.length}
+          variants={iconVariants}
+        >
+          <DesktopIcon
+            id={trashConfig.id}
+            label={getIconLabel(trashConfig.id)}
+            iconSrc={trashConfig.iconSrc}
+            isSelected={selectedIconId === trashConfig.id}
+            onSelect={selectIcon}
+            onOpen={() => handleOpenWindow(trashConfig.windowId)}
+          />
+        </motion.div>
       </div>
 
       {/* Windows Layer with Mac-like animations */}

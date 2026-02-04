@@ -70,8 +70,8 @@ const BASE_Z_INDEX = 10;
 // Windows that cannot be closed
 const UNCLOSABLE_WINDOWS = ["welcome"];
 
-// Default window size
-const DEFAULT_SIZE: WindowSize = { width: 500, height: 400 };
+// Default window size - larger for better readability
+const DEFAULT_SIZE: WindowSize = { width: 600, height: 500 };
 
 interface WindowManagerProviderProps {
   children: ReactNode;
@@ -100,7 +100,7 @@ export const WindowManagerProvider: React.FC<WindowManagerProviderProps> = ({
         canClose: initialWindow.canClose ?? !UNCLOSABLE_WINDOWS.includes(initialWindow.id),
         zIndex: BASE_Z_INDEX + 1,
         position: initialWindow.position,
-        size: initialWindow.size || { width: 500, height: 450 },
+        size: initialWindow.size || { width: 600, height: 520 },
         restoreBounds: null,
       }];
     }

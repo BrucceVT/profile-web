@@ -42,7 +42,7 @@ export const MenuBar: React.FC = () => {
         {/* Language Toggle */}
         <button
           onClick={toggleLang}
-          className="flex items-center gap-1 px-2 py-0.1 border border-black bg-mac-gray hover:bg-white retro-border-outset active:retro-border-inset"
+          className="flex items-center gap-1 px-2 py-0.5 h-6 border border-black bg-mac-gray hover:bg-white retro-border-outset active:retro-border-inset"
           title={t.menu.language}
         >
           <span className={lang === "es" ? "font-bold" : "opacity-60"}>ES</span>

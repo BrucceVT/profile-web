@@ -399,7 +399,7 @@ export const Window: React.FC<WindowProps> = ({
         className="flex-1 overflow-auto bg-white m-1.5 border border-black retro-border-inset"
         style={{ touchAction: "pan-y" }}
       >
-        <div className="p-2">{children}</div>
+        <div className="p-2 h-full">{children}</div>
       </div>
 
       {/* Resize Handles */}

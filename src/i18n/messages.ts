@@ -32,6 +32,7 @@ export interface Messages {
     contact: string;
     trash: string;
     games: string;
+    browser: string;
   };
   // Window Titles
   windows: {
@@ -43,6 +44,7 @@ export interface Messages {
     welcome: string;
     games: string;
     minesweeper: string;
+    browser: string;
   };
   // Menu
   menu: {
@@ -80,6 +82,13 @@ export interface Messages {
     empty: string;
     items: string;
   };
+  // Browser
+  browserWindow: {
+    placeholder: string;
+    blockedTitle: string;
+    blockedMessage: string;
+    openExternal: string;
+  };
 }
 
 export const messages: Record<Lang, Messages> = {
@@ -109,6 +118,7 @@ export const messages: Record<Lang, Messages> = {
       contact: "Contacto",
       trash: "Papelera",
       games: "Juegos",
+      browser: "Navegador",
     },
     windows: {
       about: "Sobre Mí",
@@ -119,6 +129,7 @@ export const messages: Record<Lang, Messages> = {
       welcome: "Bienvenido",
       games: "Juegos",
       minesweeper: "Buscaminas",
+      browser: "Navegador",
     },
     menu: {
       file: "Archivo",
@@ -150,6 +161,12 @@ export const messages: Record<Lang, Messages> = {
       empty: "La papelera está vacía",
       items: "elementos",
     },
+    browserWindow: {
+      placeholder: "Buscar o ingresar sitio web",
+      blockedTitle: "Nota de Seguridad",
+      blockedMessage: "Muchos sitios web populares (Google, YouTube) bloquean la visualización en marcos. Usa el botón 'Abrir Externo' para visitarlos.",
+      openExternal: "Abrir en nueva pestaña",
+    },
   },
   en: {
     profile: {
@@ -177,6 +194,7 @@ export const messages: Record<Lang, Messages> = {
       contact: "Contact",
       trash: "Trash",
       games: "Games",
+      browser: "Browser",
     },
     windows: {
       about: "About Me",
@@ -187,6 +205,7 @@ export const messages: Record<Lang, Messages> = {
       welcome: "Welcome",
       games: "Games",
       minesweeper: "Minesweeper",
+      browser: "Browser",
     },
     menu: {
       file: "File",
@@ -217,6 +236,12 @@ export const messages: Record<Lang, Messages> = {
     trashWindow: {
       empty: "Trash is empty",
       items: "items",
+    },
+    browserWindow: {
+      placeholder: "Search or enter website name",
+      blockedTitle: "Security Note",
+      blockedMessage: "Many major websites (Google, YouTube) block embedding via iframes. Use the 'Open External' button to visit them.",
+      openExternal: "Open in new tab",
     },
   },
 };

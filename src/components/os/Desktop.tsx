@@ -19,6 +19,7 @@ import {
   GamesWindow,
   MinesweeperWindow,
   TetrisWindow,
+  BrowserWindow,
 } from "@/features";
 
 // Window component registry
@@ -32,6 +33,7 @@ const windowComponents: Record<string, FC> = {
   games: GamesWindow,
   minesweeper: MinesweeperWindow,
   tetris: TetrisWindow,
+  browser: BrowserWindow,
 };
 
 // Icon configurations (static, uses PNG icon sources)
@@ -40,6 +42,7 @@ const iconConfigs = [
   { id: "projects", iconSrc: "/icons/projects.png", windowId: "projects" },
   { id: "skills", iconSrc: "/icons/skills.png", windowId: "skills" },
   { id: "games", iconSrc: "/icons/games.png", windowId: "games" },
+  { id: "browser", iconSrc: "/icons/browser.png", windowId: "browser" },
 ];
 
 const trashConfig = { id: "trash", iconSrc: "/icons/trash.png", windowId: "trash" };

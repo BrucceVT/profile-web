@@ -88,6 +88,7 @@ export interface Messages {
     blockedTitle: string;
     blockedMessage: string;
     openExternal: string;
+    portfolio: string;
   };
 }
 
@@ -166,6 +167,7 @@ export const messages: Record<Lang, Messages> = {
       blockedTitle: "Nota de Seguridad",
       blockedMessage: "Muchos sitios web populares (Google, YouTube) bloquean la visualización en marcos. Usa el botón 'Abrir Externo' para visitarlos.",
       openExternal: "Abrir en nueva pestaña",
+      portfolio: "Mi Portafolio",
     },
   },
   en: {
@@ -242,6 +244,7 @@ export const messages: Record<Lang, Messages> = {
       blockedTitle: "Security Note",
       blockedMessage: "Many major websites (Google, YouTube) block embedding via iframes. Use the 'Open External' button to visit them.",
       openExternal: "Open in new tab",
+      portfolio: "My Portfolio",
     },
   },
 };

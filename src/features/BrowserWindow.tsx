@@ -109,6 +109,20 @@ export const BrowserWindow: React.FC = () => {
           <SquareArrowOutUpRight size={16} />
         </button>
       </div>
+      
+      {/* Favorites Bar */}
+      <div className="flex items-center gap-2 px-2 py-1 bg-gray-100 border-b border-gray-300 text-xs">
+         <button 
+           onClick={() => {
+             setUrl("https://codedbybrucce.netlify.app/");
+             setInputUrl("https://codedbybrucce.netlify.app/");
+           }}
+           className="flex items-center gap-1 hover:bg-white hover:shadow-sm px-2 py-0.5 rounded border border-transparent hover:border-gray-300 transition-all text-gray-700"
+         >
+           <span className="text-yellow-500">★</span>
+           <span>{t.browserWindow.portfolio}</span>
+         </button>
+      </div>
 
       {/* Browser Content */}
       <div className="flex-1 relative bg-white">

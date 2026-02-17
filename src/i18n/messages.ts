@@ -97,9 +97,9 @@ export const messages: Record<Lang, Messages> = {
     profile: {
       name: "Brucce Villena Terreros",
       title: "Desarrollador Full Stack",
-      tagline: "Aplicaciones de Escritorio, Web y Móviles",
-      headline: "Construyo soluciones digitales de alto rendimiento que impulsan el crecimiento de tu negocio",
-      bio: "Enfocado en soluciones eficientes para retail y educación. Desarrollo aplicaciones web y móviles robustas con énfasis en experiencia de usuario y arquitectura escalable.",
+      tagline: "Web · Móvil · Full Stack",
+      headline: "Soluciones digitales escalables que impulsan el crecimiento de tu negocio",
+      bio: "Desarrollador Full Stack con +4 años de experiencia especializado en React, Node.js y Flutter. He diseñado e implementado soluciones web y móviles para sectores como retail, educación, fintech y logística, con enfoque en arquitectura escalable, rendimiento y experiencia de usuario.",
     },
     hero: {
       ctaStatus: "Disponible para proyectos",
@@ -174,9 +174,9 @@ export const messages: Record<Lang, Messages> = {
     profile: {
       name: "Brucce Villena Terreros",
       title: "Full Stack Developer",
-      tagline: "Desktop, Web & Mobile Applications",
-      headline: "Building high-performance digital solutions that drive your business growth",
-      bio: "Focused on efficient solutions for retail and education. I build robust web and mobile applications with a focus on user experience and scalable architecture.",
+      tagline: "Web · Mobile · Full Stack",
+      headline: "Scalable digital solutions that drive your business growth",
+      bio: "Full Stack Developer with 4+ years of experience specialized in React, Node.js, and Flutter. I have designed and delivered web and mobile solutions for retail, education, fintech, and logistics, with a focus on scalable architecture, performance, and user experience.",
     },
     hero: {
       ctaStatus: "Available for projects",
